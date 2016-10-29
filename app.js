@@ -9,13 +9,14 @@ $(function(){
 });
 var etsyData = function(searchTerm) {
 	var request = {
-		//params here
-		k
+		api_key: h6i15byym5wi26bk17mg9yy2,
+		includes = MainImage,
+		
+
 	};
-
-	$.ajax({
-		url: "https://openapi.etsy.com/v2/listings/active?api_key=h6i15byym5wi26bk17mg9yy2",
-		data: request,
-
-	})
+	url = 'https://openapi.etsy.com/v2/listings/active.js?includes=MainImage'
+	$.getJSON(url, request, function(data){
+		showResults(data);
+	});
+	console.log(data);
 }
