@@ -1,22 +1,37 @@
 //API key: h6i15byym5wi26bk17mg9yy2
 //API Secret: 26jcl2rntx
 $(function(){
-	$('#submit').submit(function(event){
-		event.preventDefailt();
+	$('#etsySearch').submit(function(event){
+		event.preventDefault();
 		var searchTerm = $('#etsyQuery').val();
 		etsyData(searchTerm);
 	});
 });
 var etsyData = function(searchTerm) {
-	var request = {
-		api_key: h6i15byym5wi26bk17mg9yy2,
-		includes = MainImage,
-		
-
+	var listingRequest = {
+		api_key: 'h6i15byym5wi26bk17mg9yy2',
+		method : 'GET', 
+		keywords : searchTerm,
+		fields : 'listing_id', 
+		// includes : 'MainImage'
 	};
-	url = 'https://openapi.etsy.com/v2/listings/active.js?includes=MainImage'
-	$.getJSON(url, request, function(data){
-		showResults(data);
+	$.ajax({
+		url : 'https://openapi.etsy.com/v2/listings/active.js',
+		data : listingRequest,
+		success : function(data, e){
+					showResults(data);
+				},
+		dataType : 'jsonp'
 	});
-	console.log(data);
 }
+function showResults(results){
+	var html = "";
+	console.log(results);
+	// html += '<li><a href="https://www.'
+}
+// $.ajax(url, listingRequest, function(data, e){
+// 		if (e){
+// 			throw new Error(e)
+// 		}
+// 		showResults(data);
+// 	});
