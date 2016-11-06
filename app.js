@@ -12,8 +12,8 @@ var etsyData = function(searchTerm) {
 		api_key: 'h6i15byym5wi26bk17mg9yy2',
 		method : 'GET', 
 		keywords : searchTerm,
-		fields : 'listing_id', 
-		// includes : 'MainImage'
+		fields : ['listing_id', 'price', 'title', 'listing_image_id', 'url_170x135'], 
+		includes: 'MainImage'
 	};
 	$.ajax({
 		url : 'https://openapi.etsy.com/v2/listings/active.js',
@@ -27,11 +27,10 @@ var etsyData = function(searchTerm) {
 function showResults(results){
 	var html = "";
 	console.log(results);
-	// html += '<li><a href="https://www.'
+	$.each(results.results, function(index, value){
+		html += '<li><a href=" ' + value.results.url + ' ">';
+		html += '<img src=" '+ value.results.MainImage.url_170x135 + ' "/></li>';	
+	});
+	
+
 }
-// $.ajax(url, listingRequest, function(data, e){
-// 		if (e){
-// 			throw new Error(e)
-// 		}
-// 		showResults(data);
-// 	});
