@@ -1,10 +1,12 @@
 //API key: h6i15byym5wi26bk17mg9yy2
 //API Secret: 26jcl2rntx
 $(function(){
+	$('.results').hide();
 	$('#etsySearch').submit(function(event){
 		event.preventDefault();
 		var searchTerm = $('#etsyQuery').val();
 		etsyData(searchTerm);
+
 	});
 });
 var etsyData = function(searchTerm) {
@@ -26,11 +28,17 @@ var etsyData = function(searchTerm) {
 }
 function showResults(results){
 	var html = "";
+	var searchTerm = $('#etsyQuery').val();
 	console.log(results);
 	$.each(results.results, function(index, value){
-		html += '<li><a href=" ' + value.results.url + ' ">';
-		html += '<img src=" '+ value.results.MainImage.url_170x135 + ' "/></li>';	
+		html += '<li><a href=" ' + value.url + ' ">' + '</br>';
+		html += '<img src=" '+ value.MainImage.url_570xN+ ' "/>' + '</a>' + '</br>';
+		html += value.title + '</br>';
+		html += value.price + '</li>';	
 	});
-	
+	$('#searchResults').html(html);
+	$('#etsyQuery').val('');
+	$('.results').show();
+	$('.search').text(searchTerm);
 
 }
