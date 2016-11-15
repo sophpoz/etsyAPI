@@ -1,5 +1,6 @@
 //API key: h6i15byym5wi26bk17mg9yy2
 //API Secret: 26jcl2rntx
+
 $(function(){
 	$('.results').hide();
 	$('#etsySearch').submit(function(event){
@@ -31,7 +32,7 @@ function showResults(results){
 	var searchTerm = $('#etsyQuery').val();
 	console.log(results);
 	$.each(results.results, function(index, value){
-		html += '<li><a href=" ' + value.url + ' ">' + '</br>';
+		html += '<li><a href=" ' + value.url + ' " target="_blank" ">' + '</br>';
 		html += '<img src=" '+ value.MainImage.url_570xN+ ' "/>' + '</a>' + '</br>';
 		html += value.title + '</br>';
 		html += value.price + '</li>';	
@@ -42,3 +43,31 @@ function showResults(results){
 	$('.search').text(searchTerm);
 
 }
+// //
+// $(document).ready(function() {
+// 	var win = $(window);
+// 	var html = "";
+// 	var searchTerm = $('#etsyQuery').val();
+// 	$.each(results.results, function(index, value){
+// 		html += '<li><a href=" ' + value.url + ' ">' + '</br>';
+// 		html += '<img src=" '+ value.MainImage.url_570xN+ ' "/>' + '</a>' + '</br>';
+// 		html += value.title + '</br>';
+// 		html += value.price + '</li>';	
+// 	});
+// 	// Each time the user scrolls
+// 	win.scroll(function() {
+// 		// End of the document reached?
+// 		if ($(document).height() - win.height() == win.scrollTop()) {
+// 			$('#loading').show();
+// 			var searchTerm = ('#etsyQuery').val();
+// 			$.ajax({
+// 				url: 'https://openapi.etsy.com/v2/listings/active.js',
+// 				dataType: 'html',
+// 				success: function(html) {
+// 					$('#searchResults').append(html);
+// 					$('#loading').hide();
+// 				}
+// 			});
+// 		}
+// 	});
+// });

@@ -15,12 +15,13 @@ body {
 	font-size: 50px;
 	padding-top:200px;
 	color:#444444;
+	font-family: "sofia-pro",sans-serif;
 
 }
 form{
 	padding-top: 20px;
 }
-#submit {
+#submit, button {
 	width: 140px;
 	height: 50px;
 	border-radius: 10px;
@@ -40,6 +41,7 @@ form{
 	width:300px;
 	font-family: 'Lato', sans-serif;
 	font-size: 16px;
+	padding: 4px;
 }
 #searchResults{
 	text-align: center;
