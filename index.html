@@ -4,16 +4,17 @@
 	<meta charset="UTF-8">
 	<title>Etsy</title>
 	<link rel="stylesheet" href="styles/style.css">
+	<script src="https://use.typekit.net/uow3yrz.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<script src="https://use.typekit.net/uow3yrz.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
 </head>
 <body>
 	<div class="etsy">
-		<div class="opening">
+		<div class="opening" id="opening">
 			Search Etsy's Handmade Marketplace!
 		<form class="etsySearch" id="etsySearch">
 			<input class="text" id="etsyQuery" placeholder="Search for Etsy Products">
@@ -27,6 +28,9 @@
 			<li>
 			</li>
 		</ul>
+	</div>
+	<div class="arrow">
+		<a href="#opening"><img src="arrow.png"/></a>
 	</div>
 	<!-- <div id="loading">
 	loading
