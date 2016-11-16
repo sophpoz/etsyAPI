@@ -5,7 +5,7 @@ $(function(){
 	$('.results').hide();
 	$('#etsySearch').submit(function(event){
 		if( $('#etsyQuery').val().length === 0) {return false}
-		var searchTerm = $('#etsyQuery').val();
+			var searchTerm = $('#etsyQuery').val();
 		etsyData(searchTerm);
 
 	});
@@ -18,17 +18,17 @@ var etsyData = function(searchTerm) {
 		fields : ['listing_id', 'price', 'title', 'listing_image_id', 'url_170x135'], 
 		includes: 'MainImage',
 		limit: 50,
-		offset: 50
 	};
 	$.ajax({
 		url : 'https://openapi.etsy.com/v2/listings/active.js',
 		data : listingRequest,
 		success : function(data, e){
-					showResults(data);
-				},
+			showResults(data);
+		},
 		dataType : 'jsonp'
 	});
 }
+
 function showResults(results){
 	var html = "";
 	var searchTerm = $('#etsyQuery').val();
@@ -48,22 +48,34 @@ function showResults(results){
 
 $(document).ready(function() {
 	var win = $(window);
-	var html = "";
 	var searchTerm = $('#etsyQuery').val();
+	var html = "";
+	var offset = 0;
 	// Each time the user scrolls
 	win.scroll(function() {
 		// End of the document reached?
 		if ($(document).height() - win.height() == win.scrollTop()) {
 			$('#loading').show();
-			var searchTerm = ('#etsyQuery').val();
+			var addListingRequest = {
+				api_key: 'h6i15byym5wi26bk17mg9yy2',
+				method : 'GET', 
+				keywords : searchTerm,
+				fields : ['listing_id', 'price', 'title', 'listing_image_id', 'url_170x135'], 
+				includes: 'MainImage',
+				limit: 50,
+				offset: 50
+			};
 			$.ajax({
-				url: 'https://openapi.etsy.com/v2/listings/active.js',
-				dataType: 'html',
-				success: function(html) {
+				url : 'https://openapi.etsy.com/v2/listings/active.js',
+				data : addListingRequest,
+				success : function(data, e){
 					$('#searchResults').append(html);
-					$('#loading').hide();
-				}
+				},
+				dataType : 'jsonp'
 			});
 		}
 	});
+	offset +=1;
+	
+	$('#loading').hide();
 });
