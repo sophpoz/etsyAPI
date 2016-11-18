@@ -99,6 +99,7 @@ img{
 	}
 	.opening{
 		font-size: 35px;
+		padding: 20px;
 
 	}
 	#etsyQuery{
@@ -116,5 +117,8 @@ img{
 	}
 	#searchResults{
 		font-size: 20px;
+	}
+	.arrow img{
+		width: 10%;
 	}
 }
