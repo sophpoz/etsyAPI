@@ -64,7 +64,7 @@ $(document).ready(function() {
 		console.log(Math.floor($(window).scrollTop()));
 		// End of the document reached?
 		if(Math.floor($(window).scrollTop()) + $(window).height() == $(document).height() - 5) {
-       	alert("bottom!");
+       	// alert("bottom!");
        	$('#loading').show();
 			etsyData(SEARCHTERM, OFFSET);
 			OFFSET += 50;
