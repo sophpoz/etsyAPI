@@ -42,6 +42,7 @@ function showResults(results){
 	$('.search').text(SEARCHTERM);
 	$('#loading').hide();
 
+
 }
 
 $(document).ready(function() {
@@ -51,9 +52,11 @@ $(document).ready(function() {
 		 e.preventDefault();
 		if( $('#etsyQuery').val().length === 0) {return false};
 		$('searchResults').html('');
+		$('#arrow').show();
 		SEARCHTERM = $('#etsyQuery').val();
 		OFFSET = 50;
 		etsyData(SEARCHTERM);
+
 
 	});
 	// Each time the user scrolls

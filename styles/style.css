@@ -22,7 +22,7 @@ form{
 	padding-top: 20px;
 }
 #submit, button {
-	width: 140px;
+	width: 180px;
 	height: 50px;
 	border-radius: 10px;
 	background-color: #F78764;
@@ -34,6 +34,7 @@ form{
     display: inline-block;
     font-size: 16px;
     margin-left:20px;
+    -webkit-appearance: none;
 
 }
 .button{
@@ -87,12 +88,16 @@ img{
 	color: #F78764;
 	font-family: "sofia-pro",sans-serif;
 }
+#arrow{
+	display:none;
+}
 .arrow img{
 	width: 4%;
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	padding: 20px;
+	
 }
 @media screen and (max-width: 800px) {
 	li{
@@ -104,7 +109,6 @@ img{
 
 	}
 	#etsyQuery{
-		width:200px;
 		height: 50px;
 		margin-bottom: 20px;
 	}
