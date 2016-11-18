@@ -93,7 +93,7 @@ img{
 	right: 0;
 	padding: 20px;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
 	li{
 	width:45%;
 	}

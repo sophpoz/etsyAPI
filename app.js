@@ -3,9 +3,10 @@
 
 $(function(){
 	$('.results').hide();
-	$('#etsySearch').submit(function(event){
-		if( $('#etsyQuery').val().length === 0) {return false}
-			var searchTerm = $('#etsyQuery').val();
+	$('#etsySearch').submit(function(e){
+		 e.preventDefault();
+		if( $('#etsyQuery').val().length === 0) {return false};
+		var searchTerm = $('#etsyQuery').val();
 		etsyData(searchTerm);
 
 	});
