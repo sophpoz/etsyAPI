@@ -9,6 +9,7 @@ body {
 	background: linear-gradient(to right bottom, #DBD2E0 50%, #fff 50%);
 	width: 100vw;
 	text-align: center;
+
 }
 .opening{
 	padding: 100px;
@@ -75,7 +76,7 @@ img{
 	width:80%;
 	padding-bottom: 20px;
 }
-.results{
+.resultsText{
 	padding:30px;
 	font-size:30px;
 	color:#444444;
