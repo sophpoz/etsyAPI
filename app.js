@@ -48,6 +48,7 @@ $(document).ready(function() {
 	$('#loading').hide();
 	$('#etsySearch').submit(function(e){
 		$('#loading').show();
+		$('#loading2').hide();
 		e.preventDefault();
 		if( $('#etsyQuery').val().length === 0) {return false};
 		$('#searchResults').html('');
@@ -59,7 +60,6 @@ $(document).ready(function() {
 
 	// Each time the user scrolls
 	$(window).scroll(function() {
-		console.log(Math.floor($(window).scrollTop()));
 		// End of the document reached?
 		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5) {
 			$('#loading2').show();
