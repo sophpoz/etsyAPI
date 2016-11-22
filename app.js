@@ -8,7 +8,7 @@ var etsyData = function(searchTerm, offset) {
 		api_key: 'h6i15byym5wi26bk17mg9yy2',
 		method : 'GET', 
 		keywords : searchTerm,
-		fields : ['listing_id', 'price', 'title', 'listing_image_id', 'url_170x135'], 
+		fields : ['listing_id', 'price', 'title', 'listing_image_id', 'url_570xN'], 
 		includes: 'MainImage',
 		limit: 50,
 		offset: offset ? offset : 0
@@ -28,7 +28,7 @@ function showResults(results){
 	var html = "";
 	$.each(results.results, function(index, value){
 		html += '<li><a href=" ' + value.url + ' " target="_blank" ">' + '</br>';
-		html += '<img src=" '+ value.MainImage.url_570xN+ ' "/>' + '</a>' + '</br>';
+		html += '<img src=" '+ value.MainImage.url_570xN + ' "/>' + '</a>' + '</br>';
 		html += value.title + '</br>';
 		html += 'USD' + " " + value.price;
 		html += '<br>' + '<button class="button"><a href=" ' + value.url + ' " target="_blank" ">view on etsy</a></button>' + '</li>';	
@@ -43,14 +43,15 @@ function showResults(results){
 }
 
 $(document).ready(function() {
-	$('#loading2').hide();
 	$('.resultsText').hide();
 	$('#loading').hide();
+	$('#loading2').hide();
+	//submit your search
 	$('#etsySearch').submit(function(e){
-		$('#loading').show();
 		$('#loading2').hide();
 		e.preventDefault();
 		if( $('#etsyQuery').val().length === 0) {return false};
+		$('#loading').show();
 		$('#searchResults').html('');
 		SEARCHTERM = $('#etsyQuery').val();
 		OFFSET = 50;
