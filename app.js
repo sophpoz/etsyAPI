@@ -3,9 +3,6 @@
 var OFFSET = 50;
 var SEARCHTERM = '';
 
-$(function(){
-	
-});
 var etsyData = function(searchTerm, offset) {
 	var listingRequest = {
 		api_key: 'h6i15byym5wi26bk17mg9yy2',
@@ -46,30 +43,42 @@ function showResults(results){
 }
 
 $(document).ready(function() {
+	$('#loading2').hide();
 	$('.resultsText').hide();
 	$('#loading').hide();
 	$('#etsySearch').submit(function(e){
-		 e.preventDefault();
+		$('#loading').show();
+		e.preventDefault();
 		if( $('#etsyQuery').val().length === 0) {return false};
-		$('searchResults').html('');
-		$('#arrow').show();
+		$('#searchResults').html('');
 		SEARCHTERM = $('#etsyQuery').val();
 		OFFSET = 50;
 		etsyData(SEARCHTERM);
 
-
 	});
+
 	// Each time the user scrolls
 	$(window).scroll(function() {
 		console.log(Math.floor($(window).scrollTop()));
 		// End of the document reached?
-		if(Math.floor($(window).scrollTop()) + $(window).height() == $(document).height() - 5) {
-       	// alert("bottom!");
-       	$('#loading').show();
+		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5) {
+			$('#loading2').show();
 			etsyData(SEARCHTERM, OFFSET);
 			OFFSET += 50;
-   		} 
-			
-		
+		} 	
 	});
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 100) {
+			$('#arrow').fadeIn();
+		} else {
+			$('#arrow').fadeOut();
+		}
+	});
+
+	$("#top").click(function (e) {
+		e.preventDefault();
+		$("html, body").animate({scrollTop: 0}, 500);
+	});
+
 });
+

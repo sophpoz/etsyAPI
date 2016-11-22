@@ -99,6 +99,14 @@ img{
 	padding: 20px;
 	
 }
+.loadingGif, .loadingGif2{
+	text-align: center;
+	margin-top: -25px;
+}
+#loading img, #loading2 img{
+	width:75px;
+	
+}
 @media screen and (max-width: 800px) {
 	li{
 	width:45%;
@@ -122,6 +130,12 @@ img{
 	}
 	#searchResults{
 		font-size: 20px;
+	}
+	#loading{
+		margin-top:20px;
+	}
+	#loading img{
+		width: 50px
 	}
 	.arrow img{
 		width: 10%;
