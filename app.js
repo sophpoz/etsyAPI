@@ -1,8 +1,7 @@
-//API key: h6i15byym5wi26bk17mg9yy2
-//API Secret: 26jcl2rntx
 var OFFSET = 50;
 var SEARCHTERM = '';
 
+//access etsy api and ajax call
 var etsyData = function(searchTerm, offset) {
 	var listingRequest = {
 		api_key: 'h6i15byym5wi26bk17mg9yy2',
@@ -12,7 +11,6 @@ var etsyData = function(searchTerm, offset) {
 		includes: 'MainImage',
 		limit: 50,
 		offset: offset ? offset : 0
-
 	};
 	$.ajax({
 		url : 'https://openapi.etsy.com/v2/listings/active.js',
@@ -23,37 +21,38 @@ var etsyData = function(searchTerm, offset) {
 		dataType : 'jsonp'
 	});
 }
-
+//append search results
 function showResults(results){
 	var html = "";
-	$.each(results.results, function(index, value){
-		html += '<li><a href=" ' + value.url + ' " target="_blank" ">' + '</br>';
-		html += '<img src=" '+ value.MainImage.url_570xN + ' "/>' + '</a>' + '</br>';
-		html += value.title + '</br>';
-		html += 'USD' + " " + value.price;
-		html += '<br>' + '<button class="button"><a href=" ' + value.url + ' " target="_blank" ">view on etsy</a></button>' + '</li>';	
-	});
+	if(results.results.length ===0){
+		html += '<p>No search results found for ' + SEARCHTERM + ', please search for something else :) </p>'
+	}else{
+		$.each(results.results, function(index, value){
+			html += '<li><a href=" ' + value.url + ' " target="_blank" ">' + '</br>';
+			html += '<img src=" '+ value.MainImage.url_570xN + ' "/>' + '</a>' + '</br>';
+			html += value.title + '</br>';
+			html += 'USD' + " " + value.price;
+			html += '<br>' + '<button class="button"><a href=" ' + value.url + ' " target="_blank" ">view on etsy</a></button>' + '</li>';	
+		});
+	}
 	$('#searchResults').append(html);
 	$('#etsyQuery').val('');
 	$('.resultsText').show();
-	$('.search').text(SEARCHTERM);
 	$('#loading').hide();
-
 
 }
 
 $(document).ready(function() {
 	$('.resultsText').hide();
 	$('#loading').hide();
-	$('#loading2').hide();
 	//submit your search
 	$('#etsySearch').submit(function(e){
-		$('#loading2').hide();
 		e.preventDefault();
 		if( $('#etsyQuery').val().length === 0) {return false};
 		$('#loading').show();
 		$('#searchResults').html('');
 		SEARCHTERM = $('#etsyQuery').val();
+		$('.search').text(SEARCHTERM);
 		OFFSET = 50;
 		etsyData(SEARCHTERM);
 
@@ -62,12 +61,13 @@ $(document).ready(function() {
 	// Each time the user scrolls
 	$(window).scroll(function() {
 		// End of the document reached?
-		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5 && $('#etsyQuery').val().length) {
-			$('#loading2').show();
+		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5 && SEARCHTERM.length) {
+			$('#loading').show();
 			etsyData(SEARCHTERM, OFFSET);
 			OFFSET += 50;
 		} 	
 	});
+	//back to top arrow
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 100) {
 			$('#arrow').fadeIn();
@@ -75,7 +75,7 @@ $(document).ready(function() {
 			$('#arrow').fadeOut();
 		}
 	});
-
+	//scroll back to top on click
 	$("#top").click(function (e) {
 		e.preventDefault();
 		$("html, body").animate({scrollTop: 0}, 500);
