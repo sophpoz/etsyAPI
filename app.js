@@ -1,5 +1,6 @@
 var OFFSET = 50;
 var SEARCHTERM = '';
+var RUNCALL = true;
 
 //access etsy api and ajax call
 var etsyData = function(searchTerm, offset) {
@@ -25,6 +26,7 @@ var etsyData = function(searchTerm, offset) {
 function showResults(results){
 	var html = "";
 	if(results.results.length ===0){
+		RUNCALL = false;
 		html += '<p>No search results found for ' + SEARCHTERM + ', please search for something else :) </p>'
 	}else{
 		$.each(results.results, function(index, value){
@@ -55,14 +57,15 @@ $(document).ready(function() {
 		$('.search').text(SEARCHTERM);
 		OFFSET = 50;
 		etsyData(SEARCHTERM);
-
+		RUNCALL = true;
 	});
 
 	// Each time the user scrolls
 	$(window).scroll(function() {
 		// End of the document reached?
-		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5 && SEARCHTERM.length) {
+		if(Math.floor($(window).scrollTop()) + $(window).height() > $(document).height() - 5 && SEARCHTERM.length && RUNCALL) {
 			$('#loading').show();
+			console.log(RUNCALL);
 			etsyData(SEARCHTERM, OFFSET);
 			OFFSET += 50;
 		} 	
@@ -82,4 +85,6 @@ $(document).ready(function() {
 	});
 
 });
+
+
 
